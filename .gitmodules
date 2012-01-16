@@ -4,9 +4,6 @@
 [submodule "bundle/vim-soy"]
 	path = bundle/vim-soy
 	url = git://github.com/duganchen/vim-soy.git
-[submodule "snipmate-snippets"]
-	path = bundle/snipmate-snippets
-	url = git://github.com/spf13/snipmate-snippets.git
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = git://github.com/msanders/snipmate.vim.git
