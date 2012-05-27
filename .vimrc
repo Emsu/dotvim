@@ -29,6 +29,8 @@ hi CursorLine cterm=NONE ctermbg=black gui=NONE guibg=black
 " Set leader key to comma
 let mapleader=","
 
+let g:ctrlp_map="<leader>t"
+
 " Use F2 to toggle paste
 set pastetoggle=<F2>
 
