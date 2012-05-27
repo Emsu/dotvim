@@ -20,3 +20,6 @@
 [submodule "bundle/ctrl-p"]
 	path = bundle/ctrl-p
 	url = git://github.com/kien/ctrlp.vim.git
+[submodule "bundle/syntax-html"]
+	path = bundle/syntax-html
+	url = git://github.com/xenoterracide/html.vim.git
