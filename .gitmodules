@@ -21,6 +21,33 @@
 [submodule "bundle/ctrl-p"]
 	path = bundle/ctrl-p
 	url = git://github.com/kien/ctrlp.vim.git
-[submodule "bundle/syntax-html"]
-	path = bundle/syntax-html
-	url = git://github.com/xenoterracide/html.vim.git
+[submodule "bundle/htmljinja"]
+	path = bundle/htmljinja
+	url = git://github.com/ocim/htmljinja.vim.git
+[submodule "bundle/jinja"]
+	path = bundle/jinja
+	url = git://github.com/vim-scripts/Jinja.git
+[submodule "bundle/pythoncomplete"]
+	path = bundle/pythoncomplete
+	url = git://github.com/vim-scripts/pythoncomplete.git
+[submodule "bundle/tasklist"]
+	path = bundle/tasklist
+	url = git://github.com/vim-scripts/TaskList.vim.git
+[submodule "bundle/javascript"]
+	path = bundle/javascript
+	url = git://github.com/serverhorror/javascript.vim.git
+[submodule "bundle/css"]
+	path = bundle/css
+	url = git://github.com/hail2u/vim-css3-syntax.git
+[submodule "bundle/python"]
+	path = bundle/python
+	url = git://github.com/vim-scripts/python.vim.git
+[submodule "bundle/solarized"]
+	path = bundle/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git://github.com/ervandew/supertab.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
