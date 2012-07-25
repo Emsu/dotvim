@@ -33,9 +33,6 @@
 [submodule "bundle/tasklist"]
 	path = bundle/tasklist
 	url = git://github.com/vim-scripts/TaskList.vim.git
-[submodule "bundle/javascript"]
-	path = bundle/javascript
-	url = git://github.com/serverhorror/javascript.vim.git
 [submodule "bundle/css"]
 	path = bundle/css
 	url = git://github.com/hail2u/vim-css3-syntax.git
