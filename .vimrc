@@ -45,6 +45,7 @@ set noswapfile
 set autochdir
 
 " Change VIM defaults
+set autochdir
 set hidden
 set number
 set autoindent
