@@ -28,7 +28,7 @@ let g:Powerline_symbols = 'fancy'
 " Taglist Config
 map <leader>e :TlistToggle<CR>
 let Tlist_Show_One_File = 1
-map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+map <F8> :!ctags -R --c++-kinds=+p --python-kinds=-i --fields=+aS --extra=+q .<CR><CR>
 set tags=tags;$HOME
 
 " Set terminal config for Powerline usage
