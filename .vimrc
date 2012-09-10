@@ -4,8 +4,6 @@ set nocompatible
 " Set leader key to comma
 let mapleader=","
 
-let g:ackprg="ack-grep -H --nogroup --column"
-
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
