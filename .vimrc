@@ -90,6 +90,9 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Auto-save on losing focus
 au FocusLost * :wa
 
+" Toggle numbers.vim
+nnoremap <F3> :NumbersToggle<CR>
+
 " Sort CSS properties with <LEADER>S
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
