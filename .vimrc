@@ -50,6 +50,7 @@ set autoindent
 set copyindent
 set shiftround
 set showmatch
+set ignorecase
 set smartcase
 set hlsearch
 set incsearch
