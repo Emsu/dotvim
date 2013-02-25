@@ -24,6 +24,8 @@
  Bundle 'pangloss/vim-javascript'
  Bundle 'hynek/vim-python-pep8-indent'
  Bundle 'tpope/vim-markdown'
+ Bundle 'wavded/vim-stylus'
+ Bundle 'saltstack/salt-vim'
  " vim-scripts repos
  Bundle 'taglist.vim'
  Bundle 'TaskList.vim'
