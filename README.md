@@ -1,2 +1,2 @@
-# Emsu's .vim
-## Setup .vim by running the  deploy.sh script
+# Emsu's Vim Config
+Setup .vim by running the  deploy.sh script
