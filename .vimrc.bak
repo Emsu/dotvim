@@ -1,52 +1,5 @@
- set nocompatible               " be iMproved
- filetype off                   " required!
-
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
-
- " let Vundle manage Vundle
- " required! 
- Bundle 'gmarik/vundle'
-
- " My Bundles here:
- "
- " original repos on github
- Bundle 'altercation/vim-colors-solarized'
- Bundle 'ervandew/supertab'
- Bundle 'kien/ctrlp.vim'
- Bundle 'Lokaltog/vim-powerline'
- Bundle 'msanders/snipmate.vim'
- Bundle 'tpope/vim-repeat'
- Bundle 'ocim/htmljinja.vim'
- Bundle 'hail2u/vim-css3-syntax'
- Bundle 'lunaru/vim-less'
- Bundle 'digitaltoad/vim-jade'
- Bundle 'pangloss/vim-javascript'
- Bundle 'hynek/vim-python-pep8-indent'
- Bundle 'tpope/vim-markdown'
- " vim-scripts repos
- Bundle 'taglist.vim'
- Bundle 'TaskList.vim'
- Bundle 'YankRing.vim'
- Bundle 'python.vim'
- Bundle 'pythoncomplete'
- Bundle 'Jinja'
- " non github repos
- " Bundle 'git://git.wincent.com/command-t.git'
- " ...
-
- filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
-
 set background=dark
+set nocompatible
 
 " Set leader key to comma
 let mapleader=","
@@ -58,8 +11,16 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 let g:SuperTabLongestHighlight=1
+let g:acp_enableAtStartup=0
+let g:neocomplcache_enable_at_startup=1
+
+" Syntastic Config
+let g:syntastic_mode_map = { 'mode': 'passive',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': ['python'] }
 
 " Powerline Config
+let g:Powerline_colorscheme="skwp"
 let g:Powerline_symbols = 'fancy'
 
 " Taglist Config
@@ -77,6 +38,9 @@ set laststatus=2   " Always show the statusline
 set nobackup
 set nowb
 set noswapfile
+
+" Automatically set directory to directory of current file
+set autochdir
 
 " Change VIM defaults
 set autochdir
@@ -128,6 +92,12 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Auto-save on losing focus
 au FocusLost * :wa
 
+" Toggle numbers.vim
+nnoremap <F3> :NumbersToggle<CR>
+
+" Sort CSS properties with <LEADER>S
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
 " Edit the vimrc file with <leader>v
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 
@@ -139,7 +109,12 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
+" Load plugins with Pathogen
+call pathogen#infect()
+call pathogen#helptags()
 syntax on
+filetype plugin indent on
+
 " Set theme to solarized dark
 let g:solarized_termcolors=256
 colorscheme solarized
