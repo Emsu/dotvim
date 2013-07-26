@@ -26,7 +26,10 @@
  Bundle 'tpope/vim-markdown'
  Bundle 'wavded/vim-stylus'
  Bundle 'saltstack/salt-vim'
+ Bundle 'lepture/vim-jinja'
+ " Bundle 'FredKSchott/CoVim'
  " vim-scripts repos
+ Bundle 'indenthtml.vim'
  Bundle 'taglist.vim'
  Bundle 'TaskList.vim'
  Bundle 'YankRing.vim'
@@ -90,6 +93,7 @@ set shiftround
 set showmatch
 set ignorecase
 set smartcase
+set smartindent
 set hlsearch
 set incsearch
 set expandtab
@@ -99,7 +103,7 @@ set softtabstop=4
 set scrolloff=5
 
 " Set javascript to 2 spaces
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype html,css,javascript,jinja setlocal ts=2 sts=2 sw=2
 
 " Without color scheme, set line colors to grey
 hi LineNr term=bold cterm=NONE ctermfg=darkgrey ctermbg=NONE gui=NONE guifg=darkgrey guibg=NONE
