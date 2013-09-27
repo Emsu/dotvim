@@ -22,11 +22,11 @@
  Bundle 'lunaru/vim-less'
  Bundle 'digitaltoad/vim-jade'
  Bundle 'pangloss/vim-javascript'
- Bundle 'hynek/vim-python-pep8-indent'
  Bundle 'tpope/vim-markdown'
  Bundle 'wavded/vim-stylus'
  Bundle 'saltstack/salt-vim'
  Bundle 'lepture/vim-jinja'
+ Bundle 'nvie/vim-flake8'
  " Bundle 'FredKSchott/CoVim'
  " vim-scripts repos
  Bundle 'indenthtml.vim'
