@@ -6,35 +6,40 @@
 
  " let Vundle manage Vundle
  " required! 
- Bundle 'gmarik/vundle'
+ Plugin 'gmarik/vundle'
 
- " My Bundles here:
+ " My Plugins here:
  "
  " original repos on github
- Bundle 'altercation/vim-colors-solarized'
- Bundle 'ervandew/supertab'
- Bundle 'kien/ctrlp.vim'
- Bundle 'Lokaltog/vim-powerline'
- Bundle 'msanders/snipmate.vim'
- Bundle 'tpope/vim-repeat'
- Bundle 'ocim/htmljinja.vim'
- Bundle 'hail2u/vim-css3-syntax'
- Bundle 'lunaru/vim-less'
- Bundle 'digitaltoad/vim-jade'
- Bundle 'jelera/vim-javascript-syntax'
- Bundle 'tpope/vim-markdown'
- Bundle 'wavded/vim-stylus'
- Bundle 'lepture/vim-jinja'
- Bundle 'klen/python-mode'
- " Bundle 'FredKSchott/CoVim'
+ Plugin 'altercation/vim-colors-solarized'
+ Plugin 'ervandew/supertab'
+ Plugin 'kien/ctrlp.vim'
+ Plugin 'Lokaltog/vim-powerline'
+ Plugin 'msanders/snipmate.vim'
+ Plugin 'tpope/vim-repeat'
+ Plugin 'ocim/htmljinja.vim'
+ Plugin 'hail2u/vim-css3-syntax'
+ Plugin 'lunaru/vim-less'
+ Plugin 'digitaltoad/vim-jade'
+ Plugin 'jelera/vim-javascript-syntax'
+ Plugin 'tpope/vim-markdown'
+ Plugin 'wavded/vim-stylus'
+ Plugin 'lepture/vim-jinja'
+ Plugin 'hynek/vim-python-pep8-indent'
+ Plugin 'scrooloose/syntastic'
+ Plugin 'tpope/vim-fugitive'
+ Plugin 'tpope/vim-git'
+ Plugin 'garbas/vim-snipmate'
+ " Plugin 'FredKSchott/CoVim'
  " vim-scripts repos
- Bundle 'indenthtml.vim'
- Bundle 'taglist.vim'
- Bundle 'TaskList.vim'
- Bundle 'YankRing.vim'
- Bundle 'Jinja'
+ Plugin 'indenthtml.vim'
+ Plugin 'taglist.vim'
+ Plugin 'TaskList.vim'
+ Plugin 'python.vim'
+ Plugin 'YankRing.vim'
+ Plugin 'Jinja'
  " non github repos
- " Bundle 'git://git.wincent.com/command-t.git'
+ " Plugin 'git://git.wincent.com/command-t.git'
  " ...
 
  filetype plugin indent on     " required!
@@ -141,6 +146,18 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 syntax on
 " Set theme to solarized dark
