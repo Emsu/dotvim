@@ -17,7 +17,6 @@
  Plugin 'Lokaltog/vim-powerline'
  Plugin 'msanders/snipmate.vim'
  Plugin 'tpope/vim-repeat'
- Plugin 'ocim/htmljinja.vim'
  Plugin 'hail2u/vim-css3-syntax'
  Plugin 'lunaru/vim-less'
  Plugin 'digitaltoad/vim-jade'
