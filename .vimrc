@@ -1,59 +1,55 @@
- set nocompatible               " be iMproved
- filetype off                   " required!
+set nocompatible               " be iMproved
+filetype off                   " required!
 
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
- " let Vundle manage Vundle
- " required! 
- Plugin 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
- " My Plugins here:
- "
- " original repos on github
- Plugin 'altercation/vim-colors-solarized'
- Plugin 'ervandew/supertab'
- Plugin 'kien/ctrlp.vim'
- Plugin 'Lokaltog/vim-powerline'
- Plugin 'msanders/snipmate.vim'
- Plugin 'tpope/vim-repeat'
- Plugin 'ocim/htmljinja.vim'
- Plugin 'hail2u/vim-css3-syntax'
- Plugin 'lunaru/vim-less'
- Plugin 'digitaltoad/vim-jade'
- Plugin 'jelera/vim-javascript-syntax'
- Plugin 'tpope/vim-markdown'
- Plugin 'wavded/vim-stylus'
- Plugin 'lepture/vim-jinja'
- Plugin 'hynek/vim-python-pep8-indent'
- Plugin 'scrooloose/syntastic'
- Plugin 'tpope/vim-fugitive'
- Plugin 'tpope/vim-git'
- Plugin 'garbas/vim-snipmate'
- " Plugin 'FredKSchott/CoVim'
- " vim-scripts repos
- Plugin 'indenthtml.vim'
- Plugin 'taglist.vim'
- Plugin 'TaskList.vim'
- Plugin 'python.vim'
- Plugin 'YankRing.vim'
- Plugin 'Jinja'
- " non github repos
- " Plugin 'git://git.wincent.com/command-t.git'
- " ...
+" My Plugins here:
 
- filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+" Theme Plugins
+Plugin 'altercation/vim-colors-solarized'
 
-set background=dark
+" Functional Plugins
+Plugin 'ervandew/supertab'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'msanders/snipmate.vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+Plugin 'garbas/vim-snipmate'
+Plugin 'scrooloose/nerdtree'
+Plugin 'taglist.vim'
+Plugin 'TaskList.vim'
+Plugin 'YankRing.vim'
+" Plugin 'FredKSchott/CoVim'
+
+" Syntax Plugins
+Plugin 'ocim/htmljinja.vim'
+Plugin 'lunaru/vim-less'
+Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-markdown'
+Plugin 'wavded/vim-stylus'
+Plugin 'lepture/vim-jinja'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'lukaszb/vim-web-indent'
+Plugin 'fatih/vim-go'
+Plugin 'elzr/vim-json'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'honza/dockerfile.vim'
+Plugin 'avakhov/vim-yaml'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'mxw/vim-jsx'
+Plugin 'python.vim'
+Plugin 'indenthtml.vim'
+
+call vundle#end()
+filetype plugin indent on     " required!
 
 " Set leader key to comma
 let mapleader=","
@@ -66,14 +62,29 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 let g:SuperTabLongestHighlight=1
 
-" Powerline Config
-let g:Powerline_symbols = 'fancy'
+" Airline Config
+let g:airline_powerline_fonts = 1
+
+" JSX config
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Taglist Config
 map <leader>e :TlistToggle<CR>
 let Tlist_Show_One_File = 1
 map <F8> :!ctags -R --c++-kinds=+p --python-kinds=-i --fields=+aS --extra=+q .<CR><CR>
 set tags=tags;$HOME
+
+" Syntastic config
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "ng-', 'trimming empty <i>', '<form> lacks "action" attribute', '<ng-include> is not recognized!', '<div> proprietary attribute "on"', 'discarding unexpected <ng-', 'discarding unexpected </ng-']
+
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
 " Set terminal config for Powerline usage
 set t_Co=256
@@ -105,7 +116,7 @@ set softtabstop=4
 set scrolloff=5
 
 " Set javascript to 2 spaces
-autocmd Filetype html,css,javascript,jinja setlocal ts=2 sts=2 sw=2
+autocmd Filetype ruby,html,css,scss,javascript,jinja,yaml,ansible setlocal ts=2 sts=2 sw=2
 
 " Without color scheme, set line colors to grey
 hi LineNr term=bold cterm=NONE ctermfg=darkgrey ctermbg=NONE gui=NONE guifg=darkgrey guibg=NONE
@@ -115,8 +126,10 @@ set cursorline
 hi CursorLine cterm=NONE ctermbg=black gui=NONE guibg=black
 
 " CtrlP
-let g:ctrlp_map="<leader>f"
 let g:ctrlp_clear_cache_on_exit=0 
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " Use F2 to toggle paste
 set pastetoggle=<F2>
@@ -146,20 +159,12 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.rb :call DeleteTrailingWS()
 
-" Add the virtualenv's site-packages to vim path
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-syntax on
-" Set theme to solarized dark
+syntax enable
+set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+
+hi SpellCap ctermfg=226 ctermbg=000 guifg=#ffff00 guibg=#000000
+hi SpellBad ctermfg=196 ctermbg=000 guifg=#ff0000 guibg=#000000
