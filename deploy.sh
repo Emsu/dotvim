@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-vim +BundleInstall +qall
+vim +PlugInstall +qall
 ln -s ~/.vim/.vimrc ~/.vimrc

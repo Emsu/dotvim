@@ -1,73 +1,57 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" My Plugins here:
+set nocompatible
+call plug#begin('~/.vim/plugged')
 
 " Theme Plugins
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " Functional Plugins
-Plugin 'ervandew/supertab'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'msanders/snipmate.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'garbas/vim-snipmate'
-Plugin 'scrooloose/nerdtree'
-Plugin 'taglist.vim'
-Plugin 'TaskList.vim'
-Plugin 'YankRing.vim'
-" Plugin 'FredKSchott/CoVim'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-repeat'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'taglist.vim'
+Plug 'TaskList.vim'
+Plug 'YankRing.vim'
+Plug 'google/yapf'
+Plug 'ervandew/supertab'
+" 'Valloric/YouCompleteMe'
 
 " Syntax Plugins
-Plugin 'ocim/htmljinja.vim'
-Plugin 'lunaru/vim-less'
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-markdown'
-Plugin 'wavded/vim-stylus'
-Plugin 'lepture/vim-jinja'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'lukaszb/vim-web-indent'
-Plugin 'fatih/vim-go'
-Plugin 'elzr/vim-json'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'honza/dockerfile.vim'
-Plugin 'avakhov/vim-yaml'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'mxw/vim-jsx'
-Plugin 'python.vim'
-Plugin 'indenthtml.vim'
+Plug 'lunaru/vim-less'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-markdown'
+Plug 'wavded/vim-stylus'
+Plug 'lepture/vim-jinja'
+Plug 'lukaszb/vim-web-indent'
+Plug 'fatih/vim-go'
+Plug 'elzr/vim-json'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'honza/dockerfile.vim'
+Plug 'avakhov/vim-yaml'
+Plug 'vim-ruby/vim-ruby'
+Plug 'mxw/vim-jsx'
+Plug 'indenthtml.vim'
+Plug 'python-mode/python-mode'
 
-call vundle#end()
-filetype plugin indent on     " required!
+call plug#end()
 
 " Set leader key to comma
 let mapleader=","
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-let g:SuperTabLongestHighlight=1
+let g:pymode_rope = 0
 
 " Airline Config
 let g:airline_powerline_fonts = 1
 
 " JSX config
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:syntastic_javascript_checkers = ['eslint']
+
+" Python config
+autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
+autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+hi pythonSelf  ctermfg=68  guifg=#5f87d7 cterm=bold gui=bold
+let g:pymode_folding = 0
 
 " Taglist Config
 map <leader>e :TlistToggle<CR>
@@ -75,16 +59,21 @@ let Tlist_Show_One_File = 1
 map <F8> :!ctags -R --c++-kinds=+p --python-kinds=-i --fields=+aS --extra=+q .<CR><CR>
 set tags=tags;$HOME
 
-" Syntastic config
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "ng-', 'trimming empty <i>', '<form> lacks "action" attribute', '<ng-include> is not recognized!', '<div> proprietary attribute "on"', 'discarding unexpected <ng-', 'discarding unexpected </ng-']
+" Ale config
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_statusline_format = ['✗ %d', '⚠ %d', '⬥ ok']
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-m>"
+let g:UltiSnipsListTrigger="<c-n>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsEditSplit="vertical" " :UltiSnipsEdit to split your window.
 
 " Set terminal config for Powerline usage
 set t_Co=256
@@ -124,12 +113,6 @@ hi LineNr term=bold cterm=NONE ctermfg=darkgrey ctermbg=NONE gui=NONE guifg=dark
 " Set CursorLine to highlight current line
 set cursorline
 hi CursorLine cterm=NONE ctermbg=black gui=NONE guibg=black
-
-" CtrlP
-let g:ctrlp_clear_cache_on_exit=0 
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<C-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
 " Use F2 to toggle paste
 set pastetoggle=<F2>
